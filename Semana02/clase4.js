@@ -25,6 +25,11 @@ const listadoNoticias = [{
 
 /* -------------------------- PRACTICANDO ATRIBUTOS ------------------------- */
 // Completemos correctamente el 'alt' de cada imagen con la frase "miniatura de noticia"
+const imagen = document.querySelector(".noticias article img")
+console.log(imagen);
+console.log(imagen.getAttribute("alt"));
+imagen.setAttribute("alt","El gol de Lisandro");
+// imagen.removeAttribute("alt");
 
 
 // rellenamos el atributo👇
@@ -36,9 +41,45 @@ const listadoNoticias = [{
 // 1- Ahora vamos a ir al HTML y eliminar los 3 Article que se encuentran en el main.
 // 2- Comentamos la parte de este código de "Practicando atributos"
 // 3- Vamos a crear de a uno e insertarlos en el HTML usando un bucle👇
+const main = document.querySelector("main")
+main.innerHTML = ""// con esta accion borrar toodo contenido previo de la etiqueta
+
+listadoNoticias.forEach( noticia => {
+    // Creamos los elementos
+    const article = document.createElement("article")
+    const h2 = document.createElement("h2")
+    const img = document.createElement("img")
+    const p = document.createElement("p")
+
+    // Agregamos el contenido a cada etiqueta etiqueta
+    h2.textContent = noticia.titulo
+    img.setAttribute("src", noticia.foto)
+    img.setAttribute("alt", `minitura ${noticia.titulo}`)
+    p.innerText = noticia.epigrafe
+
+    // Ahora nos toca insertar las etiquetas con su contenido a un elemento contendeor🍴
+    article.appendChild(h2)
+    article.appendChild(img)
+    article.appendChild(p)
+
+    // Finalmente lo inserto a un elemento del dom, que es la etiqueta main
+    main.appendChild(article)
+})
+
+const ultimoMomento = {
+    titulo: "A nueve años de la muerte de Gustavo Cerati",
+    epigrafe: "actitud rockera, sensibilidad pop y el sonido universal de un artista único/nEl paso del tiempo agiganta la relevancia de la obra del músico argentino./nSu legado ilumina el panorama de la escena actual con indiscutible vigencia.",
+    foto: "https://www.clarin.com/img/2021/03/30/JB6p137T2_360x240__1.jpg"
+}
 
 
-
+main.innerHTML += `
+    <article>
+        <h2>${ultimoMomento.titulo}</h2>
+        <img src="${ultimoMomento.foto}" alt="Ceratti eterno">
+        <p>${ultimoMomento.epigrafe}</p>
+    </article>
+`
 
 
 /* -------------------------------------------------------------------------- */

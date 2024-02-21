@@ -44,17 +44,86 @@ const albumesFamosos = [{
 /* -------------------------------------------------------------------------- */
 //do while, prompt, innerText
 function obtenerUsuario() {
+    // const nombreUsuario = document.querySelector("#nombreUsuario")
+    const nombreUsuario = document.getElementById("nombreUsuario")
 
+    let usuario = ""
+    do {
+       usuario = prompt("Ingrese su nombre de usuario: ") 
+    } while (usuario == null && usuario == "" && usuario.length < 3);
+
+
+    // let primeraLetra = usuario.charAt(0).toUpperCase()
+    // let restoDelNombre = usuario.slice(1).toLowerCase()
+    // console.log(primeraLetra+restoDelNombre);
+
+    let nombres = usuario.split(" ")
+    console.log(nombres);
+
+    // usuario = nombres.map( nombre => {
+    //     return  nombre.charAt(0).toUpperCase() +  nombre.slice(1).toLowerCase()
+    // }).join(" ")    
+    usuario = nombres.map( nombre => nombre.charAt(0).toUpperCase() +  nombre.slice(1).toLowerCase()).join(" ")    
+
+
+    nombreUsuario.innerText = usuario
+    // nombreUsuario.textContent = usuario
+    // nombreUsuario.createTextNode(usuario)// modo incorrecto de utilizar createTextNode
+    // nombreUsuario.append(document.createTextNode(usuario)) // modo correcto de utilizar createTextNode
 }
 
-obtenerUsuario();
+// obtenerUsuario();
 
 /* -------------------------------------------------------------------------- */
 /*                [2] FUNCION: renderizar tarjetas del almbumes               */
 /* -------------------------------------------------------------------------- */
 //forEach, template strings, innerHTML
 function renderizarAlbumes(listado) {
-    
+    const covers = document.querySelector(".covers")
+    console.log(covers);
+    covers.innerHTML = ""
+
+    listado.forEach(album => {
+        
+        /*// Metodo de insercion de nodos
+        //  Primero creamos los selectores que inyectaremos en el DOM
+        const li = document.createElement("li")
+        const img = document.createElement("img")
+        const p = document.createElement("p")
+        const i = document.createElement("i")
+
+        // Agregamos los atributos de cada nodo de las etiquetas creadas
+        li.setAttribute("data-id", album.id)
+
+        // img.setAttribute("src", album.imagen)
+        // img.setAttribute("alt", album.nombre)
+        img.src = album.imagen
+        img.alt = album.nombre
+
+        p.textContent = album.nombre
+
+        i.setAttribute("id", album.id)
+        i.setAttribute("class", `fa fa-heart${album.like ? " favorito" : ""}`)
+
+        // cargar los neuvos nodos al li y luego el li al cover 
+        li.appendChild(img)
+        li.appendChild(p)
+        li.appendChild(i)
+
+        covers.appendChild(li)    
+        */
+
+        // Metodo de insercion  de templete literals
+        covers.innerHTML += `
+            <li data-id="${album.id}">
+                <img
+                src="${album.imagen}"
+                alt="miniatura del album ${album.nombre}">
+                <p>${album.nombre}</p>
+                <i id="${album.id}" class="fa fa-heart${album.like ? " favorito" : ""} "></i>
+            </li>
+        `    
+    });    
 }
 
 renderizarAlbumes(albumesFamosos);

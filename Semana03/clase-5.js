@@ -72,7 +72,7 @@ function obtenerUsuario() {
     // nombreUsuario.append(document.createTextNode(usuario)) // modo correcto de utilizar createTextNode
 }
 
-// obtenerUsuario();
+obtenerUsuario();
 
 /* -------------------------------------------------------------------------- */
 /*                [2] FUNCION: renderizar tarjetas del almbumes               */

@@ -58,7 +58,7 @@ function obtenerUsuario() {
     // console.log(primeraLetra+restoDelNombre);
 
     let nombres = usuario.split(" ")
-    console.log(nombres);
+    // console.log(nombres);
 
     // usuario = nombres.map( nombre => {
     //     return  nombre.charAt(0).toUpperCase() +  nombre.slice(1).toLowerCase()
@@ -72,7 +72,7 @@ function obtenerUsuario() {
     // nombreUsuario.append(document.createTextNode(usuario)) // modo correcto de utilizar createTextNode
 }
 
-obtenerUsuario();
+// obtenerUsuario();
 
 /* -------------------------------------------------------------------------- */
 /*                [2] FUNCION: renderizar tarjetas del almbumes               */
@@ -80,7 +80,7 @@ obtenerUsuario();
 //forEach, template strings, innerHTML
 function renderizarAlbumes(listado) {
     const covers = document.querySelector(".covers")
-    console.log(covers);
+    // console.log(covers);
     covers.innerHTML = ""
 
     listado.forEach(album => {
@@ -141,7 +141,35 @@ renderizarAlbumes(albumesFamosos);
 // 3- tener en cuenta: usar las palabra en plural o en singular, según cuando
 // sea necesario ( es decir: 1 album, 1 favorito / 2 albumes, 3 favoritos )
 function mostrarDatosEnPerfil(albumes) {
-// desarrollar la función 👇
+    // desarrollar la función 👇
+    // <span id="cant-albums">0 álbumes</span> en tu listado - En total <span id="cant-favoritos">0 favoritos</span>
+    const cantidadDeAlbumes = document.querySelector("#cant-albums")
+    const cantidadDeFavoritos = document.getElementById("cant-favoritos")
 
+    let contadorAlbumes = 0, contadorFavoritos = 0
+
+    albumes.forEach( (album) => {
+        // contadorAlbumes += 1
+        contadorAlbumes++
+
+        if (album.like == true) {
+            // me sumará el contador de favoritos
+            contadorFavoritos++
+        }
+        // console.log(contadorAlbumes, contadorFavoritos);
+
+        // logica para renderizar el contador de albumes
+        if (contadorAlbumes == 1) {
+            cantidadDeAlbumes.innerText = `${contadorAlbumes} album`
+        } else {
+            cantidadDeAlbumes.innerText = `${contadorAlbumes} albumes`            
+        }
+        // Logica para camabiar contador de favoritos
+        if (contadorFavoritos == 1) {
+            cantidadDeFavoritos.innerText = `${contadorFavoritos} favorito`
+        } else {
+            cantidadDeFavoritos.innerText = `${contadorFavoritos} favoritos`            
+        }
+    })
 }
 mostrarDatosEnPerfil(albumesFamosos);

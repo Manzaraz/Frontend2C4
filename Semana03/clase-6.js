@@ -90,14 +90,8 @@ function eliminarAlbum(e) {
         
         renderizarAlbumes(albumesFamosos)
         mostrarDatosEnPerfil(albumesFamosos)
-        marcarFavorito()
-
-
-
-        
+        marcarFavorito()        
     }
-
-
 }
 
 // eliminarAlbum()

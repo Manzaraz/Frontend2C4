@@ -53,20 +53,51 @@ marcarFavorito()
 // Debemos desarrollar la funcion de eliminar un album. Para esto le vamos a 
 // preguntar al usuario cual quiere eliminar.
 // Vamos a seguir las indicaciones que nos permiten lograrlo utilizando eventos.
-// 1- Hay que escuchar el evento de 'keydown' para detectar cuando el usuario
-// presiona la tecla f
-// 2- Una vez que detectamos la tecla, debemos mostrarle un prompt al usuario
-// para que ingrese el nombre del album que desea eliminar
+// 1- Hay que escuchar el evento de 'keydown' para detectar cuando el usuario presiona la tecla f ✅
+// 2- Una vez que detectamos la tecla, debemos mostrarle un prompt al usuario para que ingrese el nombre del album que desea eliminar✅
 // 3- Podemos buscar la posicion del almbum buscado en el array con la funcion .findIndex()
 // 4- Si la busqueda nos da un resultado válido, procedemos a borrar el objeto del array
 // 5- Acto seguido debemos llamar a las funciones de renderizar y marcar favorito para que sean nuevamente aplicadas.
 
 
+// window.addEventListener("keydown", function(evento) {
+//     // console.log(evento.key);
+//     // console.log(evento.code);
+//     eliminarAlbum(evento)
+// })
+
+window.addEventListener("keydown", eliminarAlbum)
 
 
-
-function eliminarAlbum() {
+function eliminarAlbum(e) {
     // desarrollar la función 👇
+    // console.log(e.key);
+    // console.log(e.code);
+
+    if (e.code == "KeyF") {
+        console.log("presionaste la tecla f");
+
+        const albumAEliminar = prompt("¿Cuál álbum desas eliminar?").toLowerCase()
+        console.log(albumAEliminar);
+
+        const posicionAEliminar = albumesFamosos.findIndex( album => album.nombre.toLowerCase() == albumAEliminar )
+
+        if (posicionAEliminar == -1) {
+            alert("🚨El nombre del album introducido no se encuentra en tu lista de reproducción!")
+        } else {
+            albumesFamosos.splice(posicionAEliminar, 1)
+        }
+        
+        renderizarAlbumes(albumesFamosos)
+        mostrarDatosEnPerfil(albumesFamosos)
+        marcarFavorito()
+
+
+
+        
+    }
+
 
 }
-// eliminarAlbum();
+
+// eliminarAlbum()

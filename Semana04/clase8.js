@@ -143,14 +143,35 @@ function validarInformacion(usuario) {
 /* -------------------------------------------------------------------------- */
 // Esta funcion se va a encargar de mostrar que el formulario se completó correctamente.
 // Para eso debera cumplir con los siguientes requerimientos.
-// 1 - Recibe el listado de errores, y solo si no hay ninguno debe:
-// 2 - mostrar al final del formulario un caja con la misma estructura que la caja de errores, pero con la tonalidad verde
-// 3 - dentro la caja debe mostrar un párrafo con el mensaje: "¡Formulario completado con éxito!"
-// 4 - a su vez se debe deshabilitar el boton del formulario
+// 1 - Recibe el listado de errores, y solo si no hay ninguno debe:✅
+// 2 - mostrar al final del formulario un caja con la misma estructura que la caja de errores, pero con la tonalidad verde✅
+// 3 - dentro la caja debe mostrar un párrafo con el mensaje: "¡Formulario completado con éxito!"✅
+// 4 - a su vez se debe deshabilitar el boton del formulario✅
 // 5 - finalmente pasados 4 segundos: se debe eliminar esa caja, habilitar el boton y limpiar el formulario
 
 function mostrarMensajeExito(listado) {
-    setTimeout(() => {
-        console.log("Retrasado por 5 segundo.");
-      }, 5000);
+    if (listado.length == 0) { // punto 1
+        const divTemplate = document.createElement("div")
+        divTemplate.setAttribute("id", "exito")
+        divTemplate.style = "background:rgba(0, 255, 0, 0.2);padding:.5em 1em;color: green;margin: .5em 0;";
+        
+        divTemplate.innerHTML += `<p><span>¡Formulario completado con éxito!</span></p>`
+        
+        form.appendChild(divTemplate)        
+
+        const boton = document.querySelector("button")
+        boton.setAttribute("disabled", "")
+
+        const cajaExito = document.querySelector("#exito")
+        
+        setTimeout(() => {
+            alert("¡Formulario completado con éxito!");
+
+            boton.removeAttribute("disabled")
+            form.reset()
+            cajaExito.remove()
+        }, 4000);
+    }
+
+    ///
 }

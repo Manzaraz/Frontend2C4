@@ -48,6 +48,8 @@ function renderizarElementos(objetoJS) {
     // Pintar (renderizar) las propiedades capturadas en pantalla
     email.textContent = objetoJS.email
     perfil.textContent = objetoJS.rol
+
+    
 }
 
 

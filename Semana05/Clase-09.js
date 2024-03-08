@@ -3,7 +3,10 @@ const estadoUsuario = {
     email: "",
     password: "",
     rol: "",
-    terminos: false
+    terminos: false,
+    method: function () {
+        console.log("HOla mUndo");
+    },
 };
 
 // ponemos en true solo cuando estén correctos
@@ -172,19 +175,27 @@ formulario.addEventListener('submit', function (evento) {
 /* -------------------------------------------------------------------------- */
 /*                [5] FUNCION: Formulario completado con éxito                */
 /* -------------------------------------------------------------------------- */
-// Esta funcion se va a encargar de realzar la redirección cuando el formulario se complete correctamente.
+// Esta funcion se va a encargar de realizar la redirección cuando el formulario se complete correctamente.
 // Para eso debera cumplir con los siguientes requerimientos.
-// 1 - Deshabilitar el boton del formulario.
-// 2 - Esperar 3 segundos para redireccionar a la página de 
+// 1 - Deshabilitar el boton del formulario.✅
+// 2 - Esperar 3 segundos para redireccionar a la página de ✅
 // 3 - Durante ese tiempo el boton deshabilitado debe mostrar el texto: "Cargando..."
 // 4 - Cuando vaya a la página de 'usuario.html' NO se debe permitir que mediante el botón de "Atrás"(la flechita del navegador) el usuario vuelva a index.
 
 function navegarPaginaExito() {
     //  desarrollar la funcion aqui
-    
+    const btn = document.querySelector("button")
+    btn.setAttribute("disabled", true)
+    btn.textContent = "Cargando..."
+
+    // Esto es para almacenar el objeto usuario en el LocalStorage
+    localStorage.setItem('user', JSON.stringify(estadoUsuario));
 
     //Pista: para redireccionar y no volver atrás es bueno usar el objeto
-    location.replace("./usuario.html")
+    setTimeout(() => {
+        location.replace("./usuario.html")
+        
+    }, 3000);
 
 
 }

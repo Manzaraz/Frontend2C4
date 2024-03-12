@@ -1,11 +1,9 @@
-/* --------------------------- NO TOCAR DESDE ACÁ --------------------------- */
 let datosPersona = {
   nombre: "",
   edad: 0,
   ciudad: "",
   interesPorJs: "",
 };
-
 const listado = [{
     imgUrl: "https://huguidugui.files.wordpress.com/2015/03/html1.png",
     lenguajes: "HTML y CSS",
@@ -22,80 +20,60 @@ const listado = [{
     bimestre: "3er bimestre",
   },
 ];
-
 const profileBtn = document.querySelector("#completar-perfil");
 const materiasBtn = document.querySelector("#obtener-materias");
 const verMasBtn = document.querySelector("#ver-mas");
 const cambiarTema = document.querySelector('#cambiar-tema');
-
 profileBtn.addEventListener("click", renderizarDatosUsuario);
 materiasBtn.addEventListener("click", recorrerListadoYRenderizarTarjetas);
 cambiarTema.addEventListener("click", alternarColorTema);
-
 /* --------------------------- NO TOCAR HASTA ACÁ --------------------------- */
-
 function obtenerDatosDelUsuario() {
-  /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
-    do {
-        datosPersona.nombre = prompt("Ingresa tu nombre de usuario:")
-    } while (datosPersona.nombre === null || datosPersona.nombre == "" || datosPersona.nombre.length < 3);
-    do {
-        fechaNacimiento = parseInt(prompt("Ingresa tu fecha de nacimiento:"))
-        datosPersona.edad = 2024 - fechaNacimiento 
-    } while (!fechaNacimiento || fechaNacimiento.isNaN);
-    do {
-        datosPersona.ciudad = prompt("Ingresa el nombre tu Ciudad ")
-    } while (datosPersona.ciudad === null || datosPersona.ciudad == "");
-    leInteresaJs = confirm("Te interesa Javascript?") 
-    if (leInteresaJs) {
-        datosPersona.interesPorJs = "Si" 
-    }else {
-        datosPersona.interesPorJs = "No"
-    }
-}
-function renderizarDatosUsuario() {
-  /* ------------------- NO TOCAR NI ELIMINAR ESTA FUNCION. ------------------- */
-  obtenerDatosDelUsuario();
-  /* --------------- PUNTO 2: Escribe tu codigo a partir de aqui --------------- */
-    const nombre= document.querySelector("#nombre");
-    nombre.textContent = datosPersona.nombre
-    const edad = document.querySelector("#edad");
-    edad.textContent = datosPersona.edad
-    const ciudad = document.querySelector("#ciudad");
-    ciudad.textContent = datosPersona.ciudad
-    const interesPorJs = document.querySelector("#javascript");
-    interesPorJs.textContent = datosPersona.interesPorJs
-}
-function recorrerListadoYRenderizarTarjetas() {
-  /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
-    const mostrarMaterias = document.querySelector("#fila");
-    // mostrarMaterias.innerHTML = ""
-    console.log(mostrarMaterias)
-    listado.forEach(lenguaje => {
-        mostrarMaterias.innerHTML += `
-        <div class="caja">
-            <img src="${lenguaje.imgUrl}" alt="${lenguaje.lenguajes}">
-            <p class="lenguajes">${lenguaje.lenguajes}</p>
-            <p class="bimestre">${lenguaje.bimestre}</p>
-        </div>
-`
-    })
-    // materiasBtn.disabled = "true"
-    materiasBtn.removeEventListener("click", recorrerListadoYRenderizarTarjetas)
-}
-function alternarColorTema() {
-  /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
- 
-  let oscuro = document.querySelector("#sitio")
-    oscuro.classList.toggle("dark");
-}
-/* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
-window.addEventListener("keydown", (e) => { 
-  console.log(e.key);
-  console.log(e.keyCode);
-  console.log(e.code);
-    let sobreMiBtn = document.getElementById("sobre-mi");
-    if (e.key.toLowerCase() === "f") {
-        sobreMiBtn.classList.remove("oculto");
-    }
-});
+   /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
+   datosPersona.nombre = prompt ('Ingresá tu nombre');
+   datosPersona.edad = (2024 - parseInt(prompt ('Ingresa año de nacimiento')));
+   datosPersona.ciudad = prompt ('Ingresa tu ciudad de residencia');
+   
+   const interesJS = confirm('Te interesa JavaScript?');
+   datosPersona.interesPorJs = interesJS ? 'si' : 'no';
+   console.log (datosPersona);
+   
+ }
+   
+ function renderizarDatosUsuario() {
+   /* ------------------- NO TOCAR NI ELIMINAR ESTA FUNCION. ------------------- */
+   obtenerDatosDelUsuario();
+   /* --------------- PUNTO 2: Escribe tu codigo a partir de aqui --------------- */
+   
+   document.querySelector('span');
+   nombre. innerHTML = datosPersona. nombre;
+   edad. innerHTML = parseInt (datosPersona .edad);
+   ciudad. innerHTML = datosPersona. ciudad;
+   javascript.innerHTML = datosPersona. interesPorJs;
+   
+ }
+ function recorrerListadoYRenderizarTarjetas() {
+   /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
+   
+ const materias = document.querySelector('#fila')
+ materias.innerHTML = ""
+ listado.forEach((materia) => {
+   materias.innerHTML += `
+     <div class="caja">
+       <img src="${materia.imgUrl}" alt="${materia.lenguajes}">
+     <p class="lenguajes">${materia.lenguajes}</p>
+     <p class="bimestre">${materia.bimestre}</p> 
+   `
+ })
+ }
+ function alternarColorTema() {
+   /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
+     
+     document.querySelector('#sitio').classList.toggle("dark");
+ }
+ /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
+ document.addEventListener('keydown', function(e) {
+   if (e.code === 'KeyF' || (e.code === 'Keyf')) {
+     document.querySelector('.oculto').style.visibility = 'visible';
+   }
+ });

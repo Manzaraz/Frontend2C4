@@ -87,7 +87,8 @@ boton.addEventListener("click", () => {
 
     consultaAsincrona(endpoint)
     .then( (respuesta) => {
-        console.log(respuesta);
+        console.log(respuesta); // aqui recibo el objeto respuesta... y puedo operarlo ya si quiero
+        renderizarElementos(respuesta)
     })
     .catch( (error) => {
         console.log(error);
@@ -140,6 +141,15 @@ function consultaAsincrona(url) {
 // Muchos éxitos!
 
 function renderizarElementos(listado){
+    const comentarios = document.querySelector(".comentarios");
+    comentarios.innerHTML = "";
     // desarrollar la funcion 👇
-
+    const comentariosRenderizados = listado.map((comentario) => {
+        return `<div class="comentario">
+            <h4>${comentario.email}</h4>
+            <p>${comentario.body}</p>
+        </div>`
+    })
+    console.log(comentariosRenderizados);
+    comentarios.innerHTML = comentariosRenderizados.join("")
 }

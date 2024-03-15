@@ -8,12 +8,40 @@
 // En este caso vamos a consultar a un servidor del cual nos vamos a traer la data.
 // Esta API tiene su documentación en: const boton = document.querySelector('button');
 // Vamos a implementar el endpoint que nos devuelve comentarios para mostrarlos en pantalla.
+function consultaApi(endpoint) {
+    fetch(endpoint)
+        .then(respuestaJson => {
+            console.log(respuestaJson);
+            if (!respuestaJson.ok) {
+                // console.log("respuesta fallida forzar el rechazo de esta promesa del fetch, así lo atrapo en el .catch");
+                return Promise.reject(respuestaJson)
+            }
+            // console.log("respuesta ok, retornamos para tomarlo en siguiente .then");
+            return respuestaJson.json()
+
+        })
+        .then((datos) => { 
+            // console.log(datos);
+            renderizarElementos(datos)
+         })
+        .catch(err => console.log(err))
+}
 
 
 /* -------------------------------------------------------------------------- */
 /*                      [5] FUNCION: Escuchamos el click                      */
 /* -------------------------------------------------------------------------- */
 // Vamos a reimplementar la escucha del click lanzar las nuevas funciones.
+const boton = document.querySelector('button');
+const url = "https://jsonplaceholder.typicode.com/posts"
+
+boton.addEventListener("click", () => { 
+    console.log("🚩Hizo click para ver comentarios...");
+
+    consultaApi(url)
+
+    console.log("🚩Fin de la carga de comentarios...");
+ })
 
 
 /* -------------------------------------------------------------------------- */
@@ -22,6 +50,21 @@
 // Acá vamos a reutilizar la función de renderizar renderizarElementos, implementando
 // el .map() y .join() para obtener el resultado esperado.
 
+function renderizarElementos(listado){
+    console.log(listado);
+
+    const comentarios = document.querySelector(".comentarios");
+    comentarios.innerHTML = "";
+    // desarrollar la funcion 👇
+    const comentariosRenderizados = listado.map((comentario) => {
+        return `<div class="comentario" id="${comentario.id}">
+            <h4>${comentario.title}</h4>
+            <p>${comentario.body}</p>
+        </div>`
+    })
+    // console.log(comentariosRenderizados);
+    comentarios.innerHTML = comentariosRenderizados.join("")
+}
 
 /* ----------------------------- Mesa de trabajo ---------------------------- */
 /* -------------------------------------------------------------------------- */

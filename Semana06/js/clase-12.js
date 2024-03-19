@@ -78,6 +78,6 @@ function renderizarElementos(listado){
 // un error que se le muestre al usuario.
 // 2- Para lograr ver el error podemos forzarlo modificando el endpoint incorrectamente,
 // para detectar y arrojar el error deben implementar el bloque try().catch()
-// 3- Si los comentarios llegan y se cargan correctamente, el botón de "Ver comentarios"
+// 3- Si lose comentarios llegan y se cargan correctament, el botón de "Ver comentarios"
 // debe desaparecer de la interfaz. Así evitamos que se vuelva a llamar a la API.
 // 4- Solo deben cargarse los primeros 10 comentarios que nos llegan.

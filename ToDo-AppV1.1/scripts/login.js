@@ -4,7 +4,7 @@ window.addEventListener('load', function () {
     // const form = document.querySelector("form")
     const email = document.querySelector("#inputEmail")
     const password = document.querySelector("#inputPassword")
-    const url = "https://todo-api.ctd.academy/v1"
+    const url = "https://todo-api.digitalhouse.com/v1"
 
     // Aqui en este punto yo me encargo de mandar un a llamar la las funcion normalizar Texto y las validaciones
     // Cuando modifico el contenido del input se desencadena el evento el cual lo capturará la función que se encarga de validar

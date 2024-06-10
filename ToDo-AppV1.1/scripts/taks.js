@@ -15,7 +15,7 @@ window.addEventListener('load', function () {
   const nuevaTarea = document.querySelector('#nuevaTarea');
 
   // variables de conexion a la api
-  const url = "https://todo-api.ctd.academy/v1"
+  const url = "https://todo-api.digitalhouse.com/v1"
   const urlUsuario = `${url}/users/getMe`
   const urlTareas = `${url}/tasks`
   const token = JSON.parse(localStorage.jwt)
